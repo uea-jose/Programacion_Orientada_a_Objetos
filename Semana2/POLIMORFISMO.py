@@ -23,6 +23,7 @@ new_ATM_RETIRO.tipoATM()
 #LLAMO AL METODO TIPO DE CAJERO y veo el tipo de cassete
 new_ATM_DEPOSITRAIO = ATM_DEPOSITRAIO("20")
 new_ATM_DEPOSITRAIO.tipoATM()
+#...
 
 
 
