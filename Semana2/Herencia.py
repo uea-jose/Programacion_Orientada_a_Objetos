@@ -1,4 +1,4 @@
-#HARENCIA
+#3 HARENCIA
 class Cuenta:
     pass
     def __init__(self,numero, tipo): #defino constructor
