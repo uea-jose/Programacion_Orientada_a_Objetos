@@ -18,34 +18,43 @@ class ClimaDiario:
     def get_dias_semana(self):
         return self.__dias_semana
 
+    # Método para calcular el promedio de temperaturas (será sobrescrito)
+    def calcularPromedio(self):
+        print("Método calcularPromedio en ClimaDiario no está implementado.")
+        return 0
     def mostarEncabezado(self): #MEtodo para el poimorfismo
-        print("----Aplicacacion para el Promedio de Tempetaturas----\n")
-        print("-----------Ingreso de Temperaturas--------\n")
+        print("--------Promedio de Tempetaturas--------\n")
+
 # Defino la clase ClimaTemperatura que hereda de ClimaDiario
 class ClimaTemperatura(ClimaDiario):
     # Limitar el ingreso de valores a 7 días
     def __init__(self):
         super().__init__(7)  # Usando super() para llamar al constructor de la clase base
 
-     # 3. POIMORFISMO
+    #3. POIMORFISMO
     def mostarEncabezado(self):
-        print("\n--------RESULTADO--------")
+        print("--------Ingreso de Tempetaturas diarias--------\n")
     # Método para calcular el promedio de temperaturas (sobrescribe al de la clase base)
-    # Método para calcular el promedio de temperaturas
+
     def calcularPromedio(self):
         # Calcular el promedio de las temperaturas
         temperatura = self.get_temperatura()
         promedio = sum(temperatura) / self.dias
         return promedio
 
-#metodo para el polimoftimo
-obj_encabesado=ClimaDiario(7)
-obj_encabesado.mostarEncabezado()
+
 # Instancio objeto
 obj_promedio1 = ClimaTemperatura()
 # Invoco ingreso de datos temperatura
 obj_promedio1.ingresarTemperatura()
-# Invoco el método para mostrar el encabezado POLIMORFISMO
-obj_promedio1.mostarEncabezado()
-# Invoco para calcular el promedio
+# Invoco para calcular el promedio utilizando polimorfismo
 print(f"\nEl promedio semanal de las temperaturas es: {obj_promedio1.calcularPromedio():.2f}°C")
+
+# Usando polimorfismo con una referencia de tipo ClimaDiario
+obj_diario = ClimaDiario(7)
+print(f"\nLlamada al método calcularPromedio de ClimaDiario: {obj_diario.calcularPromedio()}")
+
+# Cambiamos la referencia a un objeto de tipo ClimaTemperatura
+obj_diario = ClimaTemperatura()
+obj_diario.ingresarTemperatura()
+print(f"\nEl promedio semanal de las temperaturas es: {obj_diario.calcularPromedio():.2f}°C")
