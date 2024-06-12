@@ -32,7 +32,7 @@ class ClimaTemperatura(ClimaDiario):
         promedio = sum(temperatura) / self.dias
         return promedio
 
-
+#
 # Instancio objeto
 obj_promedio1 = ClimaTemperatura()
 # Invoco ingreso de datos temperatura
