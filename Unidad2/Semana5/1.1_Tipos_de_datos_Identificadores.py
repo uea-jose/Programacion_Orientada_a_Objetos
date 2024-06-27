@@ -1,4 +1,4 @@
-# Calcular el Area de un Rombo.
+# Calcular el Area de un Rombo
 
 # nomenclatura de la forma snake_case
 # Area Rombo A= (1/2)(D X d)
