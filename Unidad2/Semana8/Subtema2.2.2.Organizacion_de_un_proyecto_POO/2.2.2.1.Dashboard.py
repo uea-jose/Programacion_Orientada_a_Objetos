@@ -1,5 +1,5 @@
 import os
-
+######
 
 def mostrar_codigo(ruta_script):
     # Asegúrate de que la ruta al script es absoluta
@@ -17,7 +17,7 @@ def mostrar_codigo(ruta_script):
 def mostrar_menu():
     # Define la ruta base donde se encuentra el dashboard.py
     ruta_base = os.path.dirname(__file__)
-
+#
     opciones = {
         '1': '/home/lubuntu/PycharmProjects/Programacion_Orientada_a_Objetos/Unidad1/Semana2/1.2.Tecnicas_de_programacion/1.2.1.ABSTRACCION.py',
         '2': '/home/lubuntu/PycharmProjects/Programacion_Orientada_a_Objetos/Unidad1/Semana2/1.2.Tecnicas_de_programacion/1.2.2.HERENCIA.py',
