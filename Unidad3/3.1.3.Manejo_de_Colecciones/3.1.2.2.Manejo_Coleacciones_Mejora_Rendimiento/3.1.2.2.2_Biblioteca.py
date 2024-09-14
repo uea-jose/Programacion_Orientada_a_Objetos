@@ -97,7 +97,7 @@ class Biblioteca:
     def devolver_libro(self, isbn, id_usuario):
         if isbn not in self.libros:
             print(f"El libro con ISBN {isbn} no está en el catálogo")
-            return
+            return#
 
         if id_usuario not in self.usuarios:
             print(f"El usuario con ID {id_usuario} no existe")
