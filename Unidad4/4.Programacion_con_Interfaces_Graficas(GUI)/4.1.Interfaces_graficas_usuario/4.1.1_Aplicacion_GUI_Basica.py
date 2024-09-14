@@ -70,3 +70,4 @@ boton_limpiar = tk.Button(
 # Posiciona el botón debajo del Entry
 boton_limpiar.pack(pady=10)
 app.mainloop()  # Loop para mantener la ventana abierta
+#fin
