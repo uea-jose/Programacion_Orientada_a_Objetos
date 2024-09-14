@@ -97,7 +97,7 @@ class Biblioteca:
     def devolver_libro(self, isbn, id_usuario):
         if isbn not in self.libros:
             print(f"El libro con ISBN {isbn} no está en el catálogo")
-            return#
+            return
 
         if id_usuario not in self.usuarios:
             print(f"El usuario con ID {id_usuario} no existe")
@@ -126,7 +126,7 @@ class Biblioteca:
         return usuario.mostrar_libros_prestados()
 
 # Menú interactivo
-def menu():
+def iniciar_menu():
     biblioteca = Biblioteca()
 
     while True:
@@ -203,5 +203,5 @@ def menu():
         else:
             print("Opción no válida, por favor intente de nuevo.")
 
-if __name__ == "__main__":
-    menu()
+# Llamar a la función para iniciar el menú
+iniciar_menu()
