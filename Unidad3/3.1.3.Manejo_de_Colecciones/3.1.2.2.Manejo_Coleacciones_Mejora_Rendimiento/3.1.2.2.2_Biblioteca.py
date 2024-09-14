@@ -198,7 +198,7 @@ def iniciar_menu():
 
         elif opcion == "9":
             print("Saliendo del sistema...")
-            break
+            break#
 
         else:
             print("Opción no válida, por favor intente de nuevo.")
