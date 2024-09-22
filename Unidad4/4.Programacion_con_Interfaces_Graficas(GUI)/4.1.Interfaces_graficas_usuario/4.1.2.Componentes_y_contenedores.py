@@ -44,7 +44,7 @@ def fecha_seleccionada():
 
 # Crear la ventana principal
 app = tk.Tk()
-app.geometry('600x650')
+app.geometry('480x580')
 app.title('Tarea 14: Componentes y Contenedores')
 app.configure(background='#ADD8E6')  # Configurar el fondo de la ventana
 
@@ -52,23 +52,22 @@ app.configure(background='#ADD8E6')  # Configurar el fondo de la ventana
 app.attributes("-topmost", True)  # Siempre encima
 app.attributes("-alpha", 0.9)  # Transparencia
 
-# Crear el TreeView para mostrar las tareas con tamaño reducido
-treeview = ttk.Treeview(app, columns=("Fecha", "Hora", "Descripción"), show="headings", height=5)  # Reducir la altura
+# Crear el TreeView para mostrar las tareas
+treeview = ttk.Treeview(app, columns=("Fecha", "Hora", "Descripción"), show="headings")
 treeview.heading("Fecha", text="Fecha")
 treeview.heading("Hora", text="Hora")
 treeview.heading("Descripción", text="Descripción")
-treeview.pack(pady=10)  # Reduce el espacio alrededor
+treeview.pack(pady=20, fill=tk.BOTH, expand=True)  # Expande el TreeView para que llene el espacio disponible
 
 # Etiqueta y calendario para seleccionar la fecha
 label_fecha = tk.Label(app, text="Selecciona una fecha:", bg='#ADD8E6')
 label_fecha.pack()
 
-# Calendario reducido
-cal = Calendar(app, selectmode='day', date_pattern='dd/mm/yyyy', width=10, height=5)  # Hacemos el calendario más pequeño
+cal = Calendar(app, selectmode='day', date_pattern='dd/mm/yyyy')  # Usamos el widget Calendar de tkcalendar
 cal.pack(pady=10)
 
 # Botón para confirmar la fecha seleccionada
-btn_fecha = tk.Button(app, text="Confirmar Fecha", command=fecha_seleccionada, height=1)  # Reducir altura
+btn_fecha = tk.Button(app, text="Confirmar Fecha", command=fecha_seleccionada)
 btn_fecha.pack(pady=5)
 
 # Etiquetas y campos de entrada para agregar nuevas tareas
@@ -82,17 +81,17 @@ label_descripcion.pack()
 entry_descripcion = tk.Entry(app)
 entry_descripcion.pack()
 
-# Botones de acción con más espacio
-boton_agregar = tk.Button(app, text="Agregar Evento", command=agregar_evento, height=1)  # Reducir altura
-boton_agregar.pack(pady=(10, 5))  # Espacio superior e inferior
+# Botones de acción
+boton_agregar = tk.Button(app, text="Agregar Evento", command=agregar_evento)
+boton_agregar.pack(pady=10)
 
-boton_eliminar = tk.Button(app, text="Eliminar Evento Seleccionado", command=eliminar_evento, height=1)  # Reducir altura
-boton_eliminar.pack(pady=(5, 5))  # Menor espacio superior e inferior
+boton_eliminar = tk.Button(app, text="Eliminar Evento Seleccionado", command=eliminar_evento)
+boton_eliminar.pack(pady=10)
 
 # Crear un botón "Salir"
 close_button = tk.Button(app, text="Salir", font=("Helvetica", 12), bg="#6e7b84", fg="white", bd=1, command=close_window,
-                         highlightbackground="white", highlightthickness=1, height=1)  # Reducir altura
-close_button.pack(side="bottom", pady=(5, 20))  # Menor espacio superior e inferior
+                         highlightbackground="white", highlightthickness=1)  # Borde verde
+close_button.pack(side="bottom", pady=20)  # Posicionar en la parte inferior con margen
 
 # Configurar tamaño del botón "Salir"
 close_button.config(width=10, height=1)
