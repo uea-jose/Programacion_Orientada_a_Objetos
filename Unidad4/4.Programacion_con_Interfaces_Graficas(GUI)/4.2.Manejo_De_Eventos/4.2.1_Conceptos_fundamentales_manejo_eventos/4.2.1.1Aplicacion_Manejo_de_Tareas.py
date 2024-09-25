@@ -6,7 +6,7 @@ class Task_Manager:
     def __init__(self, root):
         self.root = root
         self.root.title("Administrador de Tareas")
-        self.root.geometry("650x500")
+        self.root.geometry("650x350")
         self.root.resizable(False, False)
         self.root.protocol("WM_DELETE_WINDOW", self.root.quit)
         self.root.bind("<Escape>", self.root.quit)
@@ -23,7 +23,7 @@ class Task_Manager:
         self.entry.bind("<Return>", self.add_task_event)
 
         # Defino un menú al inicio de la ventana
-        self.menu = tk.Menu(self.root)
+        self.menu = tk.Menu(self.root, bg="#808080", fg="white",)
         self.root.config(menu=self.menu)
 
         # Crear una opción de menú "Archivo" con una opción "Salir"
@@ -41,6 +41,14 @@ class Task_Manager:
             height=1  # Ajusta la altura del botón
         )
         self.add_task_button.pack(side=tk.LEFT, padx=5)
+
+        # Label para indicar que se puede presionar Enter
+        self.enter_label = tk.Label(
+            self.root,
+            text="(O presiona Enter)",  # Texto del label
+            font=("Arial", 8, "italic")  # Cambiar tamaño y estilo de fuente a itálica
+        )
+        self.enter_label.place(x=460, y=40)  # Ubicación debajo del botón
 
         # Label para el Visualizador de Tareas (en negrita)
         self.task_label = tk.Label(
@@ -66,7 +74,15 @@ class Task_Manager:
             width=18,
             height=1  # Ajusta la altura del botón
         )
+
         self.complete_task_button.place(x=460, y=80)
+        # Label para indicar que se puede presionar Enter
+        self.enter_label = tk.Label(
+            self.root,
+            text="(O doble click en la Tarea)",  # Texto del label
+            font=("Arial", 8, "italic")  # Cambiar tamaño y estilo de fuente a itálica
+        )
+        self.enter_label.place(x=460, y=110)  # Ubicación debajo del botón
 
         # Botón para Eliminar Tarea
         self.delete_task_button = tk.Button(
@@ -75,7 +91,7 @@ class Task_Manager:
             command=self.delete_task,
             font=("Arial", 8), width=18, height=1
         )
-        self.delete_task_button.place(x=460, y=120)
+        self.delete_task_button.place(x=460, y=140)
 
     # Añadir tarea con el botón
     def add_task(self):
@@ -115,7 +131,7 @@ class Task_Manager:
                 messagebox.showwarning("Advertencia", "La tarea ya está marcada como completada.")
         else:
             messagebox.showwarning("Advertencia", "Por favor, selecciona una tarea.")
-
+#
     # Eliminar tarea
     def delete_task(self):
         selected_task_index = self.task_listbox.curselection()
