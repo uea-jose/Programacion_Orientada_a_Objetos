@@ -6,16 +6,16 @@ class Task_Manager:
     def __init__(self, root):
         self.root = root
         self.root.title("Administrador de Tareas")
-        self.root.geometry("650x500")
+        self.root.geometry("650x350")
         self.root.resizable(False, False)
         self.root.protocol("WM_DELETE_WINDOW", self.root.quit)
         self.root.bind("<Escape>", self.root.quit)
 
         # Color de fondo de la ventana
-        self.root.configure(bg="#f0e68c")  # Color pastel
+        self.root.configure(bg="#f9f9f9")  # Color pastel claro
 
         # Marco para el campo de entrada y el botón de agregar tarea
-        self.input_frame = tk.Frame(self.root, bg="#fffacd")  # Color pastel
+        self.input_frame = tk.Frame(self.root, bg="#fffacd")  # Color pastel suave
         self.input_frame.pack(padx=10, pady=10)
 
         # Defino entry para campo entrada
@@ -25,14 +25,14 @@ class Task_Manager:
         # Bind del evento 'Enter' para agregar la tarea
         self.entry.bind("<Return>", self.add_task_event)
 
-        # Defino un menú al inicio de la ventana
-        self.menu = tk.Menu(self.root)
+        # Defino un menú al inicio de la ventana con colores personalizados
+        self.menu = tk.Menu(self.root, bg="#b0e0e6", fg="black")  # Color pastel
         self.root.config(menu=self.menu)
 
         # Crear una opción de menú "Archivo" con una opción "Salir"
-        menu = tk.Menu(self.menu, tearoff=0)
-        menu.add_command(label="Salir", command=self.root.quit)
-        self.menu.add_cascade(label="Menu", menu=menu)
+        file_menu = tk.Menu(self.menu, tearoff=0, bg="#b0e0e6", fg="black", font=("Arial", 8))
+        file_menu.add_command(label="Salir", command=self.root.quit)
+        self.menu.add_cascade(label="Menu", menu=file_menu)
 
         # Botón para agregar tarea
         self.add_task_button = tk.Button(
@@ -43,30 +43,32 @@ class Task_Manager:
             width=18,
             height=1,
             bg="#add8e6",  # Color pastel
-            fg="black"  # Color de texto
+            fg="black"     # Color de texto
         )
         self.add_task_button.pack(side=tk.LEFT, padx=5)
 
         # Label para indicar que se puede presionar Enter
         self.enter_label = tk.Label(
             self.root,
-            text="(O presiona Enter)",  # Texto del label
-            font=("Arial", 8, "italic")  # Cambiar tamaño y estilo de fuente a itálica
+            text="(O presiona Enter)",
+            font=("Arial", 8, "italic"),
+            bg="#f9f9f9",  # Color de fondo
+            fg="black"      # Color de texto
         )
-        self.enter_label.place(x=460, y=45)  # Ubicación debajo del botón
+        self.enter_label.place(x=460, y=40)
 
-        # Label para el Visualizador de Tareas (en negrita)
+        # Label para el Visualizador de Tareas
         self.task_label = tk.Label(
             self.root,
             text="Visualizador de Tareas",
             font=("Arial", 10, "bold"),
-            bg="#f0e68c",  # Color pastel
-            fg="black"  # Color de texto
+            bg="#f9f9f9",  # Color de fondo
+            fg="black"      # Color de texto
         )
         self.task_label.place(x=50, y=50)
 
         # Listbox para mostrar las tareas
-        self.task_listbox = tk.Listbox(self.root, width=50, height=10, bg="#fffacd")  # Color pastel
+        self.task_listbox = tk.Listbox(self.root, width=50, height=10, bg="#fffacd", fg="black")  # Color pastel
         self.task_listbox.place(x=50, y=80)
 
         # Bind del evento de doble clic en una tarea
@@ -80,16 +82,18 @@ class Task_Manager:
             font=("Arial", 8),
             width=18,
             height=1,
-            bg="#add8e6",  # Color pastel
-            fg="black"  # Color de texto
+            bg="#98fb98",  # Color pastel
+            fg="black"      # Color de texto
         )
         self.complete_task_button.place(x=460, y=80)
 
         # Label para indicar que se puede hacer doble clic
         self.enter_label = tk.Label(
             self.root,
-            text="(O doble click en la Tarea)",
-            font=("Arial", 8, "italic")
+            text="(O doble clic en la Tarea)",
+            font=("Arial", 8, "italic"),
+            bg="#f9f9f9",  # Color de fondo
+            fg="black"      # Color de texto
         )
         self.enter_label.place(x=460, y=110)
 
@@ -101,8 +105,8 @@ class Task_Manager:
             font=("Arial", 8),
             width=18,
             height=1,
-            bg="#add8e6",  # Color pastel
-            fg="black"  # Color de texto
+            bg="#ffb6c1",  # Color pastel
+            fg="black"      # Color de texto
         )
         self.delete_task_button.place(x=460, y=140)
 
@@ -111,7 +115,7 @@ class Task_Manager:
         task = self.entry.get().strip()
         if task and not self.task_exists(task):
             self.task_listbox.insert(tk.END, task)
-            self.entry.delete(0, tk.END)  # Limpiar el campo de entrada
+            self.entry.delete(0, tk.END)
         else:
             messagebox.showwarning("Advertencia", "La tarea ya existe o está vacía.")
 
