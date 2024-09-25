@@ -1,3 +1,4 @@
+#SEmana 15 INtergaz grafica para manejo de eventos
 import tkinter as tk
 from tkinter import messagebox
 
@@ -71,7 +72,7 @@ class Task_Manager:
         self.task_listbox = tk.Listbox(self.root, width=50, height=10, bg="#fffacd", fg="black")  # Color pastel
         self.task_listbox.place(x=50, y=80)
 
-        # Bind del evento de doble clic en una tarea
+        #Evento de doble clic en una tarea
         self.task_listbox.bind("<Double-1>", self.complete_task_event)
 
         # Botón para Marcar como Completada
@@ -150,6 +151,7 @@ class Task_Manager:
             messagebox.showwarning("Advertencia", "Por favor, selecciona una tarea.")
 
     # Eliminar tarea
+    #
     def delete_task(self):
         selected_task_index = self.task_listbox.curselection()
         if selected_task_index:
@@ -164,3 +166,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Task_Manager(root)
     root.mainloop()
+#FI8
