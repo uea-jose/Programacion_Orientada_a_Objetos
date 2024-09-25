@@ -6,7 +6,7 @@ class Task_Manager:
     def __init__(self, root):
         self.root = root
         self.root.title("Administrador de Tareas")
-        self.root.geometry("650x350")
+        self.root.geometry("650x500")
         self.root.resizable(False, False)
         self.root.protocol("WM_DELETE_WINDOW", self.root.quit)
         self.root.bind("<Escape>", self.root.quit)
@@ -19,15 +19,12 @@ class Task_Manager:
         self.entry = tk.Entry(self.input_frame, width=50)
         self.entry.pack(side=tk.LEFT)
 
-        # Bind del evento 'Enter' para agregar la tarea
-        self.entry.bind("<Return>", self.add_task_event)
-
-        # Defino un menú al inicio de la ventana
-        self.menu = tk.Menu(self.root, bg="#808080", fg="white",)
+        # Defino un menú al inicio de la ventana con fuente más pequeña para reducir altura
+        self.menu = tk.Menu(self.root, font=("Arial", 8), bg="#808080", fg="white")  #
         self.root.config(menu=self.menu)
 
         # Crear una opción de menú "Archivo" con una opción "Salir"
-        menu = tk.Menu(self.menu, tearoff=0)
+        menu = tk.Menu(self.menu, tearoff=0, font=("Arial", 8), bg="#808080", fg="white")  # Reducir tamaño de la fuente
         menu.add_command(label="Salir", command=self.root.quit)
         self.menu.add_cascade(label="Menu", menu=menu)
 
@@ -38,17 +35,8 @@ class Task_Manager:
             command=self.add_task,
             font=("Arial", 8, "bold"),  # Cambia el tamaño de letra aquí
             width=18,
-            height=1  # Ajusta la altura del botón
         )
         self.add_task_button.pack(side=tk.LEFT, padx=5)
-
-        # Label para indicar que se puede presionar Enter
-        self.enter_label = tk.Label(
-            self.root,
-            text="(O presiona Enter)",  # Texto del label
-            font=("Arial", 8, "italic")  # Cambiar tamaño y estilo de fuente a itálica
-        )
-        self.enter_label.place(x=460, y=40)  # Ubicación debajo del botón
 
         # Label para el Visualizador de Tareas (en negrita)
         self.task_label = tk.Label(
@@ -62,9 +50,6 @@ class Task_Manager:
         self.task_listbox = tk.Listbox(self.root, width=50, height=10)
         self.task_listbox.place(x=50, y=80)
 
-        # Bind del evento de doble clic en una tarea
-        self.task_listbox.bind("<Double-1>", self.complete_task_event)
-
         # Botón para Marcar como Completada
         self.complete_task_button = tk.Button(
             self.root,
@@ -72,28 +57,18 @@ class Task_Manager:
             command=self.complete_task,
             font=("Arial", 8),
             width=18,
-            height=1  # Ajusta la altura del botón
         )
-
         self.complete_task_button.place(x=460, y=80)
-        # Label para indicar que se puede presionar Enter
-        self.enter_label = tk.Label(
-            self.root,
-            text="(O doble click en la Tarea)",  # Texto del label
-            font=("Arial", 8, "italic")  # Cambiar tamaño y estilo de fuente a itálica
-        )
-        self.enter_label.place(x=460, y=110)  # Ubicación debajo del botón
 
         # Botón para Eliminar Tarea
         self.delete_task_button = tk.Button(
             self.root,
             text="Eliminar Tarea",
             command=self.delete_task,
-            font=("Arial", 8), width=18, height=1
+            font=("Arial", 8), width=18
         )
-        self.delete_task_button.place(x=460, y=140)
+        self.delete_task_button.place(x=460, y=120)
 
-    # Añadir tarea con el botón
     def add_task(self):
         task = self.entry.get().strip()
         if task and not self.task_exists(task):
@@ -102,26 +77,14 @@ class Task_Manager:
         else:
             messagebox.showwarning("Advertencia", "La tarea ya existe o está vacía.")
 
-    # Añadir tarea con la tecla Enter
-    def add_task_event(self, event):
-        self.add_task()
-
-    # Función para comprobar si una tarea ya existe en la lista
     def task_exists(self, task):
         tasks = self.task_listbox.get(0, tk.END)
         return task in tasks
 
-    # Marcar tarea como completada al hacer doble clic
-    def complete_task_event(self, event):
-        self.complete_task()
-
-    # Marcar tarea como completada con el botón
     def complete_task(self):
         selected_task_index = self.task_listbox.curselection()
         if selected_task_index:
             selected_task = self.task_listbox.get(selected_task_index)
-
-            # Verificar si la tarea ya ha sido completada
             if "✓" not in selected_task:
                 completed_task = f"{selected_task} ✓"
                 self.task_listbox.delete(selected_task_index)
@@ -131,8 +94,7 @@ class Task_Manager:
                 messagebox.showwarning("Advertencia", "La tarea ya está marcada como completada.")
         else:
             messagebox.showwarning("Advertencia", "Por favor, selecciona una tarea.")
-#
-    # Eliminar tarea
+
     def delete_task(self):
         selected_task_index = self.task_listbox.curselection()
         if selected_task_index:
