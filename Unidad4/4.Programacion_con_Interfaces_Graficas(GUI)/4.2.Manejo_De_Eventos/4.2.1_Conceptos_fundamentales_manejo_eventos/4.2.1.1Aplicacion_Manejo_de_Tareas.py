@@ -14,10 +14,11 @@ class Task_Manager:
         # Marco para el campo de entrada y el botón de agregar tarea
         self.input_frame = tk.Frame(self.root)
         self.input_frame.pack(padx=10, pady=10)
-
+#
         # Defino entry para campo entrada
         self.entry = tk.Entry(self.input_frame, width=50)
         self.entry.pack(side=tk.LEFT)
+        #
 
         # Defino un menú al inicio de la ventana con fuente más pequeña para reducir altura
         self.menu = tk.Menu(self.root, font=("Arial", 8), bg="#808080", fg="white")  #
