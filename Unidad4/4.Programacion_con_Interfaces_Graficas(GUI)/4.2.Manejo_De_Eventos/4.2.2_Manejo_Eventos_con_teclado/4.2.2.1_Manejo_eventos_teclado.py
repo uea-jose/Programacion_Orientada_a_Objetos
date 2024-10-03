@@ -172,7 +172,7 @@ class TaskManager:
             messagebox.showinfo("Tarea Eliminada", f"Tarea: {selected_task} ha sido eliminada.")
         else:
             messagebox.showwarning("Advertencia", "Por favor, selecciona una tarea.")
-
+##
 # Llamar a la función
 if __name__ == "__main__":
     root = tk.Tk()
